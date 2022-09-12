@@ -49,18 +49,16 @@ const login = (req, res) => {
     }
 
     // check if data already exist
-    User.findOne({email: req.body.email}, (err, doc) => {
+    User.findOne({email: req.body.email}, (err, user) => {
         if (err) {
             return res.status(400).json({
                 error: err
             })
-        } else if (doc) {
-            return res.status(409).json({
-                error: 'User sudah terdaftar'
-            })
+        } else if (user) {
+            return res.redirect('/user')
         } else {
             return res.status(200).json({
-                message: 'Success'
+                message: 'User tidak ditemukan'
             })
         }
     })
