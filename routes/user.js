@@ -1,10 +1,13 @@
 const express = require('express')
 const router = express.Router()
+const connectEnsureLogin = require('connect-ensure-login')
 
-router.get('/user', (req, res) => {
-    res.render('user/index', {
-        title: 'Dashboard'
-    })
+const userController = require('../controllers/UserController');
+
+router.get('/', (req, res) => {
+    res.redirect('/dashboard')
 })
+
+router.get('/dashboard', connectEnsureLogin.ensureLoggedIn('/login'), userController.dashboard)
 
 module.exports = router
