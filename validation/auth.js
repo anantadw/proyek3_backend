@@ -5,7 +5,7 @@ const validateRegister = [
         .exists().withMessage('Fullname doesn\'t exist').bail()
         .notEmpty().withMessage('Fullname is required').bail()
         .isLength({min: 3}).withMessage('Fullname must be at least 3 characters').bail()
-        .isAlpha().withMessage('Fullname must contain only letter').bail()
+        .isAlpha(undefined, {ignore: '\s'}).withMessage('Fullname must contain only letter').bail()
         .trim().escape(),
     validator.body('email')
         .exists().withMessage('Email doesn\'t exist').bail()
