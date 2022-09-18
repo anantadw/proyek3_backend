@@ -14,7 +14,15 @@ const User = new Schmea({
     password: {
         type: String,
         required: true
+    },
+    isActive: {
+        type: Boolean,
+        required: true
+    },
+    role: {
+        type: String,
+        required: true
     }
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Users', User)
